@@ -34,7 +34,7 @@ namespace PathGameplay
             Gizmos.color = Color.green;
             for (int i = 0; i < PathPoints.Count-1; i++)
             {
-                Gizmos.DrawSphere(PathPoints[i],0.5f);
+                Gizmos.DrawSphere(PathPoints[i],0.2f);
                 Gizmos.DrawLine(PathPoints[i],PathPoints[i+1]);
             }
             Gizmos.DrawSphere(PathPoints[^1],0.2f);

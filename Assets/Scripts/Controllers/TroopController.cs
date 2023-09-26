@@ -29,10 +29,10 @@ namespace Controllers
     public class TroopController : MonoBehaviour
     {
         public Action<SoldierController> OnSoldierDie { get; set; }
+        public float TroopPercentage { get; private set; }
         
         private TroopGameplayData _gameplayData;
         private List<SoldierController> _soldiers = new List<SoldierController>();
-        private float _troopsPercentage;
 
         public void SpawnTroops(TroopGameplayData gameplayData)
         {
@@ -43,6 +43,9 @@ namespace Controllers
             OnSoldierDie += CheckTroopPercentage;
 
             transform.position = Vector3.zero;
+            
+            PathUserManager userPath = new PathUserManager(gameplayData.Path, _gameplayData.User);
+
             //spawns
             for (int i = 0; i < _gameplayData.Number; i++)
             {
@@ -52,11 +55,10 @@ namespace Controllers
                 {
                     throw new Exception($"no data for this troop : {_gameplayData.Soldier.ToString()}");
                 }
-                soldier.SetSoldier(data, this, gameplayData.Path);
                 soldier.transform.name = $"Soldier {data.Type} {i}";
 
-                Vector3 spawnPoint = soldier.PathManager.GetSpawnPoint(_gameplayData.User);
-                Debug.Log(spawnPoint);
+                Vector3 spawnPoint = userPath.GetSpawnPoint(_gameplayData.User);
+                Vector3 baseSpawnPoint = spawnPoint;
 
                 switch (i)
                 {
@@ -73,16 +75,17 @@ namespace Controllers
                         break;
                 }
                 soldier.transform.position = spawnPoint;
+                
+                soldier.SetSoldier(data, this, gameplayData.Path, baseSpawnPoint - spawnPoint, _gameplayData.User);
 
+                _soldiers.Add(soldier);
             }
         }
-
         
-
-        public void CheckTroopPercentage(SoldierController soldier)
+        private void CheckTroopPercentage(SoldierController soldier)
         {
             _soldiers.Remove(soldier);
-            _troopsPercentage = _soldiers.Count / (float)_gameplayData.Number;
+            TroopPercentage = (float)_soldiers.Count / (float)_gameplayData.Number;
         }
     }
 }

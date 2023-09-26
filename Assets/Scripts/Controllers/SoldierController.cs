@@ -4,6 +4,8 @@ using Data.Troops;
 using Managers;
 using PathGameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
+using View;
 
 namespace Controllers
 {
@@ -20,7 +22,12 @@ namespace Controllers
             Type = data.Type;
         }
 
-        public SoldierType Type { get; set; }
+        public SoldierType Type { get; private set; }
+        public UserType User { get; set; }
+        public bool IsGoingToAnotherPath { get; set; }
+        public Action IsAtPathEnd { get; set; } //TODO use this to launch the soldier attack to the enemy base
+        public Vector3 OffsetFromSpawnPoint { get; set; }
+        public Vector3 TargetPosition { get; set; }
     }
 
     public enum SoldierStateEnum
@@ -32,35 +39,47 @@ namespace Controllers
     
     public class SoldierController : EntityController<SoldierGameplayData>
     {
-        public PathUserManager PathManager { get; private set; }
+        [field:SerializeField] public SoldierView View { get; private set; }
         
-        private TroopController _troop;
+        public TroopController Troop { get; private set; }
+        public PathUserManager PathManager { get; private set; }
+        public SoldierStateEnum CurrentState { get; private set; }
+        public Action<SoldierStateEnum> OnStateChanged { get; set; }
+        
         private SoldierStateBase _soldierState;
-        private SoldierStateEnum _currentState;
 
-        public void SetSoldier(SoldierData data, TroopController troop, Path path)
+        private void Awake()
+        {
+            View.Initialize(this);
+        }
+
+        public void SetSoldier(SoldierData data, TroopController troop, Path path, Vector3 offsetFromSpawnPoint, UserType user)
         {
             GameplayData = new SoldierGameplayData(data);
-            _troop = troop;
-            PathManager = new PathUserManager(path);
+            Troop = troop;
             
             SetState(SoldierStateEnum.Spawn);
+
+            GameplayData.User = user;
+            PathManager = new PathUserManager(path, user);
+            GameplayData.TargetPosition = PathManager.GetNextPoint();
+            GameplayData.OffsetFromSpawnPoint = offsetFromSpawnPoint;
         }
 
         private void Update()
         {
-            _soldierState.UpdateState();
+            _soldierState?.UpdateState();
         }
 
         public override void Die()
         {
             base.Die();
-            _troop.OnSoldierDie.Invoke(this);
+            Troop.OnSoldierDie.Invoke(this);
         }
 
         public void SetState(SoldierStateEnum state)
         {
-            if (state == _currentState)
+            if (state == CurrentState)
             {
                 return;
             }
@@ -81,6 +100,8 @@ namespace Controllers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
+
+            CurrentState = state;
             
             _soldierState?.OnEnterState();
         }

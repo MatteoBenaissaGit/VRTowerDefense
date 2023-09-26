@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56cddf930eff9854ea5a0f95fb8c39f6, type: 3}
   m_Name: WaveDev
   m_EditorClassIdentifier: 
-  TimeBetweenWaves: 0
-  ActualTimeBetweenWaves: 0
+  TimeBetweenWaves: 5
+  ActualTimeBetweenWaves: 5
   CanSpawnTroop: 0
-  Waves: []
+  Waves:
+  - PathNumber: 0
+    NumberOfTroops: 10
+    SoldierType: 0
+  - PathNumber: 0
+    NumberOfTroops: 5
+    SoldierType: 1
+  - PathNumber: 0
+    NumberOfTroops: 18
+    SoldierType: 0

@@ -8,7 +8,7 @@ namespace Controllers.SoliderStates
     {
         public SoldierStateSpawn(SoldierController controller) : base(controller)
         {
-            _spawnTime = RessourceManager.Instance.TroopsData.GetSoldierData(Controller.GameplayData.Type).SpawnTime;
+            
         }
 
         private float _time;
@@ -16,8 +16,7 @@ namespace Controllers.SoliderStates
         
         public override void OnEnterState()
         {
-            Controller.transform.localScale = Vector3.zero;
-            Controller.transform.DOScale(Vector3.one, _spawnTime);
+            Controller.View.SpawnAnimation();
         }
 
         public override void UpdateState()

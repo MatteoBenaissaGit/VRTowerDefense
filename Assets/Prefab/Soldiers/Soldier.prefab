@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8921773955792955456}
   - component: {fileID: 1771237773484851970}
+  - component: {fileID: 3899594429376205307}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -43,6 +44,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d51f1d91aa4901ae64f07fa4241643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <View>k__BackingField: {fileID: 3899594429376205307}
+--- !u!114 &3899594429376205307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489037589057055515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55167f1c662744f28c56f77813c60e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8901093560473362590
