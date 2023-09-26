@@ -10,9 +10,8 @@ namespace Enemy
 
         public List<Wave> waves;
         private int _currentWaveIndex = 0;
-        public bool isActive;
 
-        private void Awake()
+        private void Start()
         {
             if (Instance == null)
             {
