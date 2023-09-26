@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Controllers;
 using Managers;
+using MatteoBenaissaLibrary.Attributes.ReadOnly;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,32 +20,38 @@ namespace Enemy
 
     public class WaveManager : MonoBehaviour
     {
-        public BaseManager BaseManager;
-        public WaveData WaveData;
-        private int _currentWaveIndex = 0;
+        [field:SerializeField] public BaseManager BaseManager { get; private set; }
+        [field:SerializeField] public WaveData WaveData { get; private set; }
+        
+        public Action OnLaunchFirstWave { get; set; }
 
-        public Action OnLauchFirstWave;
-        [SerializeField] private bool _startLaunch;
+        [SerializeField, ReadOnly] private bool _startLaunch;
+        
+        private int _currentWaveIndex = 0;
         
         private void Awake()
         {
-            OnLauchFirstWave += Lauch;
+            _startLaunch = false;
+            OnLaunchFirstWave += Launch;
         }
 
-        private void Lauch()
-        {
-            _startLaunch = true;
-        }
-        
         private void Start()
         {
             WaveData.CanSpawnTroop = true;
+            OnLaunchFirstWave.Invoke();
+        }
+        
+        private void Launch()
+        {
+            _startLaunch = true;
         }
 
         private void Update()
         {
             if (WaveData.CanSpawnTroop == false)
+            {
                 return;
+            }
 
             if (WaveData.CanSpawnTroop && _startLaunch)
             {

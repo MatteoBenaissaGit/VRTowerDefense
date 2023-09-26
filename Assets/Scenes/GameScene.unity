@@ -1256,8 +1256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4eeef1801a8d040bb69f8201918a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseManager: {fileID: 150121100}
-  WaveData: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c, type: 2}
+  <BaseManager>k__BackingField: {fileID: 150121100}
+  <WaveData>k__BackingField: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c,
+    type: 2}
+  _startLaunch: 1
 --- !u!1 &972426943
 GameObject:
   m_ObjectHideFlags: 0
