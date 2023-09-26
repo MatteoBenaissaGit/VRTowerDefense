@@ -14,6 +14,7 @@ namespace Enemy
         public int PathNumber;
         public int NumberOfTroops;
         public SoldierType SoldierType;
+        public float TimeBeforeNextWaves;
     }
 
     public class WaveManager : MonoBehaviour
@@ -22,22 +23,38 @@ namespace Enemy
         public WaveData WaveData;
         private int _currentWaveIndex = 0;
 
+        public Action OnLauchFirstWave;
+        [SerializeField] private bool _startLaunch;
+        
+        private void Awake()
+        {
+            OnLauchFirstWave += Lauch;
+        }
+
+        private void Lauch()
+        {
+            _startLaunch = true;
+        }
+        
         private void Start()
         {
-            WaveData.ActualTimeBetweenWaves = WaveData.TimeBetweenWaves;
             WaveData.CanSpawnTroop = true;
         }
 
         private void Update()
         {
-            if (WaveData.CanSpawnTroop)
-                WaveData.ActualTimeBetweenWaves -= Time.deltaTime;
+            if (WaveData.CanSpawnTroop == false)
+                return;
 
-            if (WaveData.ActualTimeBetweenWaves <= 0)
+            if (WaveData.CanSpawnTroop && _startLaunch)
             {
-                WaveData.ActualTimeBetweenWaves = WaveData.TimeBetweenWaves;
-                WaveData.CanSpawnTroop = false;
-                SpawnWave();
+                WaveData.ActualTimeBetweenWave -= Time.deltaTime;
+
+                if (WaveData.ActualTimeBetweenWave <= 0)
+                {
+                    WaveData.CanSpawnTroop = false;
+                    SpawnWave();
+                }
             }
         }
 
@@ -50,6 +67,7 @@ namespace Enemy
                 BaseManager._troopSpawner.SpawnTroopAtPath(currentWave.PathNumber, currentWave.NumberOfTroops,
                     currentWave.SoldierType);
 
+                WaveData.ActualTimeBetweenWave = WaveData.Waves[_currentWaveIndex].TimeBeforeNextWaves;
                 _currentWaveIndex++;
                 WaveData.CanSpawnTroop = true;
             }
