@@ -31,7 +31,6 @@ namespace Controllers
         public Action<SoldierController> OnSoldierDie { get; set; }
         
         private TroopGameplayData _gameplayData;
-        private PathUserManager _pathManager;
         private List<SoldierController> _soldiers = new List<SoldierController>();
         private float _troopsPercentage;
 
@@ -39,26 +38,46 @@ namespace Controllers
         {
             //data and fields
             _gameplayData = gameplayData;
-            _pathManager = new PathUserManager(gameplayData.Path);
             
             //events
             OnSoldierDie += CheckTroopPercentage;
-            
+
+            transform.position = Vector3.zero;
             //spawns
             for (int i = 0; i < _gameplayData.Number; i++)
             {
-                SoldierController solider = Instantiate(RessourceManager.Instance.SoldierPrefabs[(int)_gameplayData.Soldier]);
-                SoldierData data = RessourceManager.Instance.TroopsData.SoldiersData.Find(x => x.Type == _gameplayData.Soldier);
+                SoldierController soldier = Instantiate(RessourceManager.Instance.SoldierPrefabs[(int)_gameplayData.Soldier], transform, true);
+                SoldierData data = RessourceManager.Instance.TroopsData.GetSoldierData(_gameplayData.Soldier);
                 if (data == null)
                 {
                     throw new Exception($"no data for this troop : {_gameplayData.Soldier.ToString()}");
                 }
-                solider.SetSoldier(data, this);
-                
-                //TODO spawn troops in a circle or smth
-                solider.transform.position = _pathManager.GetSpawnPoint(_gameplayData.User);
+                soldier.SetSoldier(data, this, gameplayData.Path);
+                soldier.transform.name = $"Soldier {data.Type} {i}";
+
+                Vector3 spawnPoint = soldier.PathManager.GetSpawnPoint(_gameplayData.User);
+                Debug.Log(spawnPoint);
+
+                switch (i)
+                {
+                    case <= 0:
+                        break;
+                    case > 0 and <= 5:
+                        spawnPoint = MathTools.GetPointInCircleFromCenter(spawnPoint, i * (360f / 5f), data.SpawnOffset);
+                        break;
+                    case > 5 and <= 18:
+                        spawnPoint = MathTools.GetPointInCircleFromCenter(spawnPoint, (i - 5) * (360f / 12f), data.SpawnOffset * 2);
+                        break;
+                    case > 18:
+                        Debug.LogError("not setup for more than 18 soldiers spawn");
+                        break;
+                }
+                soldier.transform.position = spawnPoint;
+
             }
         }
+
+        
 
         public void CheckTroopPercentage(SoldierController soldier)
         {

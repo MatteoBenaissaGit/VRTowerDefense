@@ -17,11 +17,34 @@ namespace Data.Troops
     public class SoldierData : EntityData
     {
         public SoldierType Type;
+        public float SpawnTime;
+        public float SpawnOffset;
+        public float DistanceToPathPointToSetReached;
     }
     
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Troops", order = 2)]
     public class TroopsData : ScriptableObject
     {
         [field: SerializeField] public List<SoldierData> SoldiersData { get; private set; }
+
+        private Dictionary<SoldierType, SoldierData> _dictionarySoldiersData = new Dictionary<SoldierType, SoldierData>();
+
+        public void Initialize()
+        {
+            foreach (SoldierData soldier in SoldiersData)
+            {
+                _dictionarySoldiersData.Add(soldier.Type, soldier);
+            }
+        }
+
+        public SoldierData GetSoldierData(SoldierType type)
+        {
+            if (_dictionarySoldiersData.ContainsKey(type) == false)
+            {
+                throw new Exception("no data for soldier");
+            }
+
+            return _dictionarySoldiersData[type];
+        }
     }
 }

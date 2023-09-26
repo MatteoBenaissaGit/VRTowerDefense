@@ -18,8 +18,14 @@ MonoBehaviour:
     Damage: 2
     Speed: 4
     Type: 0
+    SpawnTime: 1
+    SpawnOffset: 0.7
+    DistanceToPathPointToSetReached: 2
   - EntityName: Archer
     Life: 3
     Damage: 3
     Speed: 3
     Type: 1
+    SpawnTime: 1
+    SpawnOffset: 1
+    DistanceToPathPointToSetReached: 6

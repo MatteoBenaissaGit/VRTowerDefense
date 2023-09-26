@@ -20,6 +20,7 @@ namespace Managers
             Path path = GameManager.Instance.Paths[pathNumber];
             TroopController troop = RessourceManager.Instance.InstantiateTroop();
             troop.SpawnTroops(new TroopGameplayData(type,numberOfTroops,_user,path));
+            troop.transform.name = $"{type.ToString()} troop {_user.ToString()}";
             return troop;
         }
     }

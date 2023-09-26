@@ -12,6 +12,12 @@ namespace Managers
         [field:SerializeField] public List<SoldierController> SoldierPrefabs { get; private set; } //list them in the same order as the SoldierTypeEnum
         [field:SerializeField] public TroopController TroopPrefab { get; private set; } //list them in the same order as the SoldierTypeEnum
 
+        protected override void Awake()
+        {
+            base.Awake();
+            TroopsData.Initialize();
+        }
+
         public TroopController InstantiateTroop()
         {
             return Instantiate(TroopPrefab);

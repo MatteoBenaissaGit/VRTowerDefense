@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Controllers;
 using Data.Base;
 using PathGameplay;
@@ -27,6 +28,7 @@ namespace Managers
     
         //private fields
         private TroopSpawnerManager _troopSpawner;
+        private List<TroopController> _troops = new List<TroopController>();
 
         private void Awake()
         {
@@ -36,7 +38,7 @@ namespace Managers
 
         private void Start()
         {
-            _troopSpawner.SpawnTroopAtPath(0, 5, SoldierType.SimpleCac);
+            _troops.Add(_troopSpawner.SpawnTroopAtPath(0, 18, SoldierType.SimpleCac));
         }
     }
 }

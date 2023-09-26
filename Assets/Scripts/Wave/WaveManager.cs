@@ -8,7 +8,7 @@ namespace Enemy
     {
         public static WaveManager Instance;
 
-        public List<EnemyWave> waves;
+        public List<Wave> waves;
         private int _currentWaveIndex = 0;
         public bool isActive;
 
@@ -37,7 +37,7 @@ namespace Enemy
         {
             while (_currentWaveIndex < waves.Count)
             {
-                EnemyWave currentWave = waves[_currentWaveIndex];
+                Wave currentWave = waves[_currentWaveIndex];
                 foreach (global::Enemy.Enemy enemy in currentWave.enemies)
                 {
                     SpawnEnemy(enemy);

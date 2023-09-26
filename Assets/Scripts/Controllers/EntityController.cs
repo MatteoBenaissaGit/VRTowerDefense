@@ -19,7 +19,7 @@ namespace Controllers
     
     public abstract class EntityController<TClass> : MonoBehaviour where TClass : EntityGameplayData
     {
-        protected TClass GameplayData;
+        public TClass GameplayData { get; protected set; }
 
         public virtual void TakeDamage(int value)
         {
