@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Controllers;
 using Data.Base;
+using Enemy;
 using PathGameplay;
 using UnityEngine;
 
@@ -25,20 +26,17 @@ namespace Managers
     
         //public fields
         public BaseGameplayData GameplayData { get; private set; }
+        public TroopSpawnerManager _troopSpawner;
     
         //private fields
-        private TroopSpawnerManager _troopSpawner;
         private List<TroopController> _troops = new List<TroopController>();
+
+        private WaveManager _waveManager;
 
         private void Awake()
         {
             GameplayData = new BaseGameplayData(this);
             _troopSpawner = new TroopSpawnerManager(User);
-        }
-
-        private void Start()
-        {
-            _troops.Add(_troopSpawner.SpawnTroopAtPath(0, 18, SoldierType.SimpleCac));
         }
     }
 }

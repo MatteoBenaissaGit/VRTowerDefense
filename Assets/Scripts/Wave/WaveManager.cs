@@ -1,60 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controllers;
+using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
+    [Serializable]
+    public class Wave
+    {
+        public int PathNumber;
+        public int NumberOfTroops;
+        public SoldierType SoldierType;
+    }
+
     public class WaveManager : MonoBehaviour
     {
-        public static WaveManager Instance;
-
-        public List<Wave> waves;
+        public BaseManager BaseManager;
+        public WaveData WaveData;
         private int _currentWaveIndex = 0;
 
         private void Start()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Debug.LogError("There is already one WaveManager in this scene !");
-            }
+            WaveData.ActualTimeBetweenWaves = WaveData.TimeBetweenWaves;
+            WaveData.CanSpawnTroop = true;
         }
 
         private void Update()
         {
-            if (isActive)
+            if (WaveData.CanSpawnTroop)
+                WaveData.ActualTimeBetweenWaves -= Time.deltaTime;
+
+            if (WaveData.ActualTimeBetweenWaves <= 0)
             {
-                isActive = false;
-                StartCoroutine(SpawnWave());
+                WaveData.ActualTimeBetweenWaves = WaveData.TimeBetweenWaves;
+                WaveData.CanSpawnTroop = false;
+                SpawnWave();
             }
         }
 
-        private IEnumerator SpawnWave()
+        private void SpawnWave()
         {
-            while (_currentWaveIndex < waves.Count)
+            if (_currentWaveIndex < WaveData.Waves.Count)
             {
-                Wave currentWave = waves[_currentWaveIndex];
-                foreach (global::Enemy.Enemy enemy in currentWave.enemies)
-                {
-                    SpawnEnemy(enemy);
-                    yield return new WaitForSeconds(currentWave.spawnDelay);
-                }
+                Wave currentWave = WaveData.Waves[_currentWaveIndex];
+
+                BaseManager._troopSpawner.SpawnTroopAtPath(currentWave.PathNumber, currentWave.NumberOfTroops,
+                    currentWave.SoldierType);
 
                 _currentWaveIndex++;
-                yield return new WaitForSeconds(5f);
+                WaveData.CanSpawnTroop = true;
             }
-        }
-
-        private void SpawnEnemy(global::Enemy.Enemy enemy)
-        {
-            var actualEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
-
-            EnemyManager.Instance.AllEnemies.Add(actualEnemy);
-
-            actualEnemy.GetComponent<EnemyMovement>().waypoints = EnemyManager.Instance.Waypoints;
         }
     }
 }
