@@ -1212,6 +1212,8 @@ MonoBehaviour:
   - {fileID: 8348890766485328464, guid: b3c3a997b7f301b4d9f3e394de88b40d, type: 3}
   <TroopPrefab>k__BackingField: {fileID: 8186408073606606346, guid: 07ff4ae71b96a7b40a0e5f48618301a7,
     type: 3}
+  <ArrowPrefab>k__BackingField: {fileID: 5079941952171011656, guid: 39cbff02e5e34cf4f8d40dbb8e35b5ef,
+    type: 3}
 --- !u!114 &932713866
 MonoBehaviour:
   m_ObjectHideFlags: 0

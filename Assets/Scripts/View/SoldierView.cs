@@ -17,9 +17,10 @@ namespace View
         
         public void SpawnAnimation()
         {
+            Vector3 scale = Controller.transform.localScale;
             Controller.transform.localScale = Vector3.zero;
             float spawnTime = RessourceManager.Instance.TroopsData.GetSoldierData(Controller.GameplayData.Type).SpawnTime;
-            Controller.transform.DOScale(Vector3.one, spawnTime);
+            Controller.transform.DOScale(scale, spawnTime);
 
             Controller.OnStateChanged += LaunchAnimation;
         }

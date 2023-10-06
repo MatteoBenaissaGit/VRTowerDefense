@@ -1,5 +1,7 @@
-﻿using Managers;
+﻿using System;
+using Managers;
 using UnityEngine;
+using View;
 
 namespace Controllers.SoliderStates
 {
@@ -41,6 +43,19 @@ namespace Controllers.SoliderStates
                         Controller.Rigidbody.velocity = Vector3.zero;
                         _baseToAttack.SetLife(-Controller.GameplayData.Damage);
                         _attackCooldown = Controller.GameplayData.AttackSpeed;
+
+                        switch (Controller.GameplayData.Type)
+                        {
+                            case SoldierType.SimpleCac:
+                                break;
+                            case SoldierType.SimpleDistance:
+                                ProjectileView arrow = RessourceManager.Instance.InstantiateObject(RessourceManager.Instance.ArrowPrefab).GetComponent<ProjectileView>();
+                                arrow.transform.position = Controller.transform.position;
+                                arrow.SetTarget(_baseToAttack.transform.position);
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     }
                 }
                 else

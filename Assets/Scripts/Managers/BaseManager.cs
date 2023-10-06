@@ -49,7 +49,6 @@ namespace Managers
         public void SetLife(int value)
         {
             GameplayData.Life += value;
-            Debug.Log(GameplayData.Life);
 
             if (value < 0)
             {

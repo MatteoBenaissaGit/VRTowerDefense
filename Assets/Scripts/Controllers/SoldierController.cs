@@ -151,7 +151,6 @@ namespace Controllers
                 BaseManager attackBase = hit.collider.gameObject.GetComponent<BaseManager>();
                 if (attackBase != null && attackBase.User != GameplayData.User)
                 {
-                    Debug.Log("base detected");
                     baseToAttack = attackBase;
                 }
             }
