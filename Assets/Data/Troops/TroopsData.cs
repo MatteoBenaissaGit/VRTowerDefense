@@ -11,6 +11,9 @@ namespace Data.Troops
         public int Life;
         public int Damage;
         public float Speed;
+        public float DetectionRange;
+        public float AttackRange;
+        public float AttackSpeed;
     }
     
     [Serializable]

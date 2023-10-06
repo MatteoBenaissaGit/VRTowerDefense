@@ -35,6 +35,10 @@ namespace View
                 case SoldierStateEnum.Walk:
                     UpdateWalk();
                     break;
+                case SoldierStateEnum.AttackBase:
+                    break;
+                case SoldierStateEnum.AttackSoldier:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

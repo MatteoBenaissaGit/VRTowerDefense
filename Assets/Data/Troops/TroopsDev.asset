@@ -16,7 +16,10 @@ MonoBehaviour:
   - EntityName: Swordman
     Life: 5
     Damage: 2
-    Speed: 2
+    Speed: 4
+    DetectionRange: 6
+    AttackRange: 2
+    AttackSpeed: 1
     Type: 0
     SpawnTime: 1
     SpawnOffset: 0.7
@@ -24,7 +27,10 @@ MonoBehaviour:
   - EntityName: Archer
     Life: 3
     Damage: 3
-    Speed: 1
+    Speed: 2
+    DetectionRange: 16
+    AttackRange: 10
+    AttackSpeed: 1.5
     Type: 1
     SpawnTime: 1
     SpawnOffset: 1

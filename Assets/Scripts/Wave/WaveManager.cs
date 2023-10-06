@@ -71,7 +71,7 @@ namespace Enemy
             {
                 Wave currentWave = WaveData.Waves[_currentWaveIndex];
 
-                BaseManager._troopSpawner.SpawnTroopAtPath(currentWave.PathNumber, currentWave.NumberOfTroops,
+                BaseManager.TroopSpawner.SpawnTroopAtPath(currentWave.PathNumber, currentWave.NumberOfTroops,
                     currentWave.SoldierType);
 
                 WaveData.ActualTimeBetweenWave = WaveData.Waves[_currentWaveIndex].TimeBeforeNextWaves;

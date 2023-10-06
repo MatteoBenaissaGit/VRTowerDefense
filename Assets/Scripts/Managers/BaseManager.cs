@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Controllers;
 using Data.Base;
+using Data.Troops;
 using Enemy;
 using PathGameplay;
 using UnityEngine;
+using View;
 
 namespace Managers
 {
@@ -26,7 +28,10 @@ namespace Managers
     
         //public fields
         public BaseGameplayData GameplayData { get; private set; }
-        public TroopSpawnerManager _troopSpawner;
+        public BaseView View { get; private set; }
+        public TroopSpawnerManager TroopSpawner  { get; private set; }
+        public Action OnBaseTakeDamage  { get;  set; }
+        public Action OnBaseDie { get;  set; }
     
         //private fields
         private List<TroopController> _troops = new List<TroopController>();
@@ -36,7 +41,30 @@ namespace Managers
         private void Awake()
         {
             GameplayData = new BaseGameplayData(this);
-            _troopSpawner = new TroopSpawnerManager(User);
+            TroopSpawner = new TroopSpawnerManager(User);
+
+            OnBaseDie += Die;
+        }
+
+        public void SetLife(int value)
+        {
+            GameplayData.Life += value;
+            Debug.Log(GameplayData.Life);
+
+            if (value < 0)
+            {
+                OnBaseTakeDamage.Invoke();
+            }
+            
+            if (GameplayData.Life <= 0)
+            {
+                OnBaseDie.Invoke();
+            }
+        }
+
+        private void Die()
+        {
+            Debug.Log("base died");
         }
     }
 }

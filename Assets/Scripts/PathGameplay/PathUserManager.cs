@@ -35,21 +35,26 @@ namespace PathGameplay
 
         public UnityEngine.Vector3 GetNextPoint()
         {
-            if (_userType == UserType.Player)
+            switch (_userType)
             {
-                if (_index < _path.PathPoints.Count - 1)
+                case UserType.Player:
                 {
-                    _index++;
-                } 
-            }
-            else if (_userType == UserType.Enemy)
-            {
-                if (_index > 0)
+                    if (_index < _path.PathPoints.Count - 1)
+                    {
+                        _index++;
+                    }
+                    break;
+                }
+                case UserType.Enemy:
                 {
-                    _index--;
-                } 
+                    if (_index > 0)
+                    {
+                        _index--;
+                    }
+                    break;
+                }
             }
-            
+
             return _path.PathPoints[_index];
         } 
     }

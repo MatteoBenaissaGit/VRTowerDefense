@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Controllers.SoliderStates;
 using Data.Troops;
 using Managers;
@@ -34,12 +35,15 @@ namespace Controllers
     {
         None = 0,
         Spawn = 1,
-        Walk = 2
+        Walk = 2,
+        AttackBase = 3,
+        AttackSoldier = 4
     }
     
     public class SoldierController : EntityController<SoldierGameplayData>
     {
         [field:SerializeField] public SoldierView View { get; private set; }
+        [field:SerializeField] public Rigidbody Rigidbody { get; private set; }
         
         public TroopController Troop { get; private set; }
         public PathUserManager PathManager { get; private set; }
@@ -47,6 +51,8 @@ namespace Controllers
         public Action<SoldierStateEnum> OnStateChanged { get; set; }
         
         private SoldierStateBase _soldierState;
+        private SoldierController[] _soldiersInRange;
+        private BaseManager _baseToAttack;
 
         private void Awake()
         {
@@ -69,6 +75,13 @@ namespace Controllers
         private void Update()
         {
             _soldierState?.UpdateState();
+
+            if (Rigidbody.velocity.magnitude != 0)
+            {
+                Rigidbody.velocity = Vector3.Lerp(Rigidbody.velocity, Vector3.zero, 2f * Time.deltaTime);
+            }
+            
+            DetectEnemies();
         }
 
         public override void Die()
@@ -97,6 +110,12 @@ namespace Controllers
                 case SoldierStateEnum.Spawn:
                     _soldierState = new SoldierStateSpawn(this);
                     break;
+                case SoldierStateEnum.AttackBase:
+                    _soldierState = new SoldierStateAttack(this, null, _baseToAttack);
+                    break;
+                case SoldierStateEnum.AttackSoldier:
+                    _soldierState = new SoldierStateAttack(this, GetClosestSoldierToAttack(), null);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
@@ -104,6 +123,80 @@ namespace Controllers
             CurrentState = state;
             
             _soldierState?.OnEnterState();
+        }
+        
+        private void DetectEnemies()
+        {
+            Vector3 origin = transform.position;
+
+            RaycastHit[] results = new RaycastHit[100];
+            var size = Physics.SphereCastNonAlloc(origin, GameplayData.DetectionRange, transform.forward, results, 0);
+
+            List<SoldierController> controllers = new List<SoldierController>();
+            BaseManager baseToAttack = null;
+            foreach (RaycastHit hit in results)
+            {
+                if (hit.collider == null)
+                {
+                    continue;
+                }
+                
+                SoldierController soldier = hit.collider.gameObject.GetComponent<SoldierController>();
+                if (soldier != null)
+                {
+                    controllers.Add(soldier);
+                    continue;
+                }
+
+                BaseManager attackBase = hit.collider.gameObject.GetComponent<BaseManager>();
+                if (attackBase != null && attackBase.User != GameplayData.User)
+                {
+                    Debug.Log("base detected");
+                    baseToAttack = attackBase;
+                }
+            }
+            _baseToAttack = baseToAttack;
+            _soldiersInRange = controllers.ToArray();
+        }
+
+        public SoldierController GetClosestSoldierToAttack()
+        {
+            if (_soldiersInRange == null || _soldiersInRange.Length == 0)
+            {
+                return null;
+            }
+
+            float minDistance = float.MaxValue;
+            SoldierController closest = null;
+            foreach (SoldierController soldier in _soldiersInRange)
+            {
+                if (soldier.GameplayData.User == GameplayData.User)
+                {
+                    continue;
+                }
+                
+                float distance = Mathf.Sqrt((transform.position - soldier.transform.position).sqrMagnitude);
+                if (distance >= minDistance)
+                {
+                    continue;
+                }
+
+                minDistance = distance;
+                closest = soldier;
+            }
+
+            return closest;
+        }
+
+        public BaseManager GetBaseToAttack()
+        {
+            return _baseToAttack;
+        }
+
+        public bool IsInRange(Transform t)
+        {
+            float distance = Mathf.Sqrt((transform.position - t.position).sqrMagnitude);
+            return distance <= GameplayData.AttackRange;
         }
     }
 }

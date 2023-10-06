@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3470364225458200729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.159, y: 0, z: -0.035}
-  m_LocalScale: {x: 0.07410474, y: 0.06818625, z: 0.78200746}
+  m_LocalPosition: {x: -0.275, y: 0, z: 0.582}
+  m_LocalScale: {x: 0.20280614, y: 0.18660872, z: 2.140159}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5220392732662337810}
@@ -96,30 +96,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordman(SoldierVariant)
       objectReference: {fileID: 0}
-    - target: {fileID: 7458784187610741908, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.42548
-      objectReference: {fileID: 0}
-    - target: {fileID: 7458784187610741908, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.42548
-      objectReference: {fileID: 0}
-    - target: {fileID: 7458784187610741908, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.42548
-      objectReference: {fileID: 0}
-    - target: {fileID: 7458784187610741908, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}
@@ -170,6 +165,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
