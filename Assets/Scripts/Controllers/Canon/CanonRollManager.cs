@@ -10,6 +10,14 @@ public class CanonRollManager : MonoBehaviour
 
     void Update()
     {
-        transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x , yRoll.transform.rotation.eulerAngles.x, xRoll.transform.rotation.eulerAngles.x);
+        //without offset
+        
+        transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
+            xRoll.transform.rotation.eulerAngles.x, yRoll.transform.rotation.eulerAngles.x);
+
+        //with offset
+
+        // transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x / _rollOffset,
+        //     yRoll.transform.rotation.eulerAngles.x, xRoll.transform.rotation.eulerAngles.x / _rollOffset);
     }
 }
