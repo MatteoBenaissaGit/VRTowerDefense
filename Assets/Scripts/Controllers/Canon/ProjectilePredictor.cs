@@ -5,16 +5,17 @@ using UnityEngine;
 public class TrajectoryPredictor : MonoBehaviour
 {
     LineRenderer trajectoryLine;
-    
+
     [SerializeField, Tooltip("Le marker de détection d'objet")]
     Transform hitMarker;
-    
+
     [SerializeField, Range(10, 200), Tooltip("La distance max du LineRenderer")]
     int maxPoints = 50;
- 
+
     float increment = 0.025f;
     float rayOverlap = 1.1f;
 
+    [SerializeField] private float _offsetYTarget;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class TrajectoryPredictor : MonoBehaviour
 
     public void PredictTrajectory(ProjectileProperties projectile)
     {
-        Vector3 velocity =  projectile.direction * (projectile.initialSpeed / projectile.mass);
+        Vector3 velocity = projectile.direction * (projectile.initialSpeed / projectile.mass);
         Vector3 position = projectile.initialPosition;
         Vector3 nextPosition;
         float overlap;
@@ -37,9 +38,9 @@ public class TrajectoryPredictor : MonoBehaviour
         {
             velocity = CalculateNewVelocity(velocity, projectile.drag, increment);
             nextPosition = position + velocity * increment;
-            
+
             overlap = Vector3.Distance(position, nextPosition) * rayOverlap;
-            
+
             if (Physics.Raycast(position, velocity.normalized, out RaycastHit hit, overlap))
             {
                 UpdateLineRender(i, (i - 1, hit.point));
@@ -69,10 +70,10 @@ public class TrajectoryPredictor : MonoBehaviour
     private void MoveHitMarker(RaycastHit hit)
     {
         hitMarker.gameObject.SetActive(true);
-        float offset = 0.025f;
+        float offset = 1f;
 
-        hitMarker.position = hit.point + hit.normal * offset;
-        hitMarker.rotation = Quaternion.LookRotation(hit.normal, Vector3.up);
+        hitMarker.position = new Vector3(hit.point.x, hit.point.y + _offsetYTarget, hit.point.z);
+        // hitMarker.rotation = Quaternion.LookRotation(hit.normal, Vector3.up);
     }
 
     public void SetTrajectoryVisible(bool visible)

@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64de5b7e43c51142a10270cce743147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitMarker: {fileID: 5740447760493063356}
+  hitMarker: {fileID: 6361027195843967140}
   maxPoints: 200
 --- !u!114 &4425862796242457811
 MonoBehaviour:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToThrow: {fileID: -4372559327244379006, guid: 36f65d703b76ae1419ea03f35171bc15,
     type: 3}
-  force: 300
+  force: 200
   StartPosition: {fileID: 8022189744616352550}
   _explosion: {fileID: 8976449721724609184}
 --- !u!1 &4665023794508317958
@@ -322,11 +322,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 991181550188409840}
-  - {fileID: 5740447760493063356}
+  - {fileID: 6361027195843967140}
   - {fileID: 7854306808543278704}
   - {fileID: 5361517752173161560}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8086510196888623299
 GameObject:
@@ -5454,7 +5454,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3833cc0487441b24e9685c62e2357764, type: 3}
---- !u!4 &5740447760493063356 stripped
+--- !u!4 &6361027195843967140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7575458065624639019, guid: 3833cc0487441b24e9685c62e2357764,
     type: 3}
