@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,6 +11,11 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Destroy());
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Destroy(gameObject);
     }
 
     IEnumerator Destroy()

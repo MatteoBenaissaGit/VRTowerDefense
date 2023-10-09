@@ -1,30 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
 {
-    public Transform cannonBarrel;
-    public GameObject ballPrefab;
-    public float shootForce = 10f;
-
     [SerializeField] private GameObject xRoll;
     [SerializeField] private GameObject yRoll;
+
+    public float BlastPower = 5;
+
+    public Transform ShotPoint;
     
+
     private void Update()
     {
-        transform.localRotation = Quaternion.Euler(yRoll.transform.rotation.eulerAngles.x,
-            xRoll.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.z);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Shoot();
-        }
-    }
-
-    void Shoot()
-    {
-        GameObject ball = Instantiate(ballPrefab, cannonBarrel.position, Quaternion.identity);
-        
-        Rigidbody rb = ball.GetComponent<Rigidbody>();
-        rb.AddForce(cannonBarrel.forward * shootForce, ForceMode.VelocityChange);
+        transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
+            xRoll.transform.rotation.eulerAngles.x, yRoll.transform.rotation.eulerAngles.x + 45);
     }
 }
