@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,8 @@ public class ProjectileThrow : MonoBehaviour
 
     [SerializeField] private GameObject _explosion;
 
+    [SerializeField] private InputActionReference _action;
+
     void OnEnable()
     {
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
@@ -24,14 +27,15 @@ public class ProjectileThrow : MonoBehaviour
             StartPosition = transform;
     }
 
+    private void Start()
+    {
+        _action.action.Enable();
+        _action.action.performed += context => { ThrowObject(); };
+    }
+
     void Update()
     {
         Predict();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ThrowObject();
-        }
     }
 
     void Predict()
