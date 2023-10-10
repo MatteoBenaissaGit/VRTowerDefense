@@ -17,7 +17,8 @@ public class ProjectileThrow : MonoBehaviour
 
     [SerializeField] private GameObject _explosion;
 
-    [SerializeField] private InputActionReference _action;
+    [SerializeField] private InputActionReference _action1;
+    [SerializeField] private InputActionReference _action2;
 
     void OnEnable()
     {
@@ -29,8 +30,11 @@ public class ProjectileThrow : MonoBehaviour
 
     private void Start()
     {
-        _action.action.Enable();
-        _action.action.performed += context => { ThrowObject(); };
+        _action1.action.Enable();
+        _action1.action.performed += context => { ThrowObject(); };
+        
+        _action2.action.Enable();
+        _action2.action.performed += context => { ThrowObject(); };
     }
 
     void Update()
