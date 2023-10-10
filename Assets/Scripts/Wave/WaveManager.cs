@@ -20,15 +20,17 @@ namespace Enemy
 
     public class WaveManager : MonoBehaviour
     {
-        [field:SerializeField] public BaseManager BaseManager { get; private set; }
-        [field:SerializeField] public WaveData WaveData { get; private set; }
-        
+        [field: SerializeField] public BaseManager BaseManager { get; private set; }
+        [field: SerializeField] public WaveData WaveData { get; private set; }
+
+        private float _actualTimeBetweenWaves;
+
         public Action OnLaunchFirstWave { get; set; }
 
         [SerializeField] private bool _startLaunch;
-        
+
         private int _currentWaveIndex = 0;
-        
+
         private void Awake()
         {
             _startLaunch = false;
@@ -40,9 +42,10 @@ namespace Enemy
             WaveData.CanSpawnTroop = true;
             OnLaunchFirstWave.Invoke();
         }
-        
+
         private void Launch()
         {
+            _actualTimeBetweenWaves = WaveData.TimeBetweenWave;
             _startLaunch = true;
         }
 
@@ -55,9 +58,9 @@ namespace Enemy
 
             if (WaveData.CanSpawnTroop && _startLaunch)
             {
-                WaveData.ActualTimeBetweenWave -= Time.deltaTime;
+                _actualTimeBetweenWaves -= Time.deltaTime;
 
-                if (WaveData.ActualTimeBetweenWave <= 0)
+                if (_actualTimeBetweenWaves <= 0)
                 {
                     WaveData.CanSpawnTroop = false;
                     SpawnWave();
@@ -74,7 +77,7 @@ namespace Enemy
                 BaseManager.TroopSpawner.SpawnTroopAtPath(currentWave.PathNumber, currentWave.NumberOfTroops,
                     currentWave.SoldierType);
 
-                WaveData.ActualTimeBetweenWave = WaveData.Waves[_currentWaveIndex].TimeBeforeNextWaves;
+                _actualTimeBetweenWaves = WaveData.Waves[_currentWaveIndex].TimeBeforeNextWaves;
                 _currentWaveIndex++;
                 WaveData.CanSpawnTroop = true;
             }
@@ -82,7 +85,7 @@ namespace Enemy
 
         private void OnDisable()
         {
-            WaveData.ActualTimeBetweenWave = 0;
+            WaveData.TimeBetweenWave = 0;
         }
     }
 }

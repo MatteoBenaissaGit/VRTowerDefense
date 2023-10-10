@@ -7,8 +7,8 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Wave", order = 2)]
 public class WaveData : ScriptableObject
 {
-    [Header("Timer Waves")]
-    public float ActualTimeBetweenWave;
+    [FormerlySerializedAs("ActualTimeBetweenWave")] [Header("Timer Waves")]
+    public float TimeBetweenWave;
     public bool CanSpawnTroop;
 
     public List<Wave> Waves;
