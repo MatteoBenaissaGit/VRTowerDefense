@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c243cb857abbcb43a96b23f32927d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRoll: {fileID: 8086510196888623299}
+  xRoll: {fileID: 6203254197487608651}
   yRoll: {fileID: 8915972545009998544}
 --- !u!114 &2907746976162575166
 MonoBehaviour:
@@ -391,7 +391,9 @@ MonoBehaviour:
   force: 200
   StartPosition: {fileID: 8022189744616352550}
   _explosion: {fileID: 8976449721724609184}
-  _action: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _action1: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  _action2: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &4665023794508317958
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +427,7 @@ Transform:
   - {fileID: 2573538258216338173}
   - {fileID: 6285613322365050593}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5164745106307885703
 GameObject:
