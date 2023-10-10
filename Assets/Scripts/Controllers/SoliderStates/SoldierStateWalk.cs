@@ -28,16 +28,14 @@ namespace Controllers.SoliderStates
             }
 
             BaseManager baseToAttack = Controller.GetBaseToAttack();
-            if (baseToAttack != null)
+            if (baseToAttack != null && Controller.IsInDetectionRange(baseToAttack.transform))
             {
-                Debug.Log("attack base");
                 Controller.SetState(SoldierStateEnum.AttackBase);
             }
 
             SoldierController soldierToAttack = Controller.GetClosestSoldierToAttack();
-            if (soldierToAttack != null)
+            if (soldierToAttack != null && Controller.IsInDetectionRange(soldierToAttack.transform))
             {
-                Debug.Log("attack soldier");
                 Controller.SetState(SoldierStateEnum.AttackSoldier);
             }
         }

@@ -18,7 +18,7 @@ MonoBehaviour:
     Damage: 2
     Speed: 4
     DetectionRange: 6
-    AttackRange: 2
+    AttackRange: 1
     AttackSpeed: 1
     Type: 0
     SpawnTime: 1
@@ -28,8 +28,8 @@ MonoBehaviour:
     Life: 3
     Damage: 3
     Speed: 2
-    DetectionRange: 16
-    AttackRange: 10
+    DetectionRange: 10
+    AttackRange: 5
     AttackSpeed: 1.5
     Type: 1
     SpawnTime: 1

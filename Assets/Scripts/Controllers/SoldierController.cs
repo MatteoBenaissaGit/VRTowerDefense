@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using Controllers.SoliderStates;
 using Data.Troops;
+using DG.Tweening;
 using Managers;
 using PathGameplay;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using View;
@@ -44,6 +46,7 @@ namespace Controllers
     {
         [field:SerializeField] public SoldierView View { get; private set; }
         [field:SerializeField] public Rigidbody Rigidbody { get; private set; }
+        [field:SerializeField] public ParticleSystem DeathParticles { get; private set; }
         
         public TroopController Troop { get; private set; }
         public PathUserManager PathManager { get; private set; }
@@ -84,10 +87,24 @@ namespace Controllers
             DetectEnemies();
         }
 
+        public void SetLife(int value)
+        {
+            transform.DOComplete();
+            transform.DOPunchScale(Vector3.up * 0.1f, 0.5f);
+            GameplayData.Life += value;
+            if (GameplayData.Life <= 0)
+            {
+                Die();
+            }
+        }
+
         public override void Die()
         {
             base.Die();
             Troop.OnSoldierDie.Invoke(this);
+            DeathParticles.Play();
+            DeathParticles.transform.parent = null;
+            Destroy(this.gameObject);
         }
 
         public void SetState(SoldierStateEnum state)
@@ -169,7 +186,8 @@ namespace Controllers
             SoldierController closest = null;
             foreach (SoldierController soldier in _soldiersInRange)
             {
-                if (soldier.GameplayData.User == GameplayData.User)
+                if (soldier == null || soldier.transform == null ||
+                    soldier.GameplayData.User == GameplayData.User)
                 {
                     continue;
                 }
@@ -192,10 +210,33 @@ namespace Controllers
             return _baseToAttack;
         }
 
-        public bool IsInRange(Transform t)
+        public bool IsInAttackRange(Transform t)
         {
-            float distance = Mathf.Sqrt((transform.position - t.position).sqrMagnitude);
+            float distance = Vector3.Distance(transform.position, t.position);
             return distance <= GameplayData.AttackRange;
         }
+        
+        public bool IsInDetectionRange(Transform t)
+        {
+            float distance = Vector3.Distance(transform.position, t.position);
+            return distance <= GameplayData.DetectionRange;
+        }
+        
+        #if UNITY_EDITOR
+
+        private void OnDrawGizmos()
+        {
+            if (Application.isPlaying == false)
+            {
+                return;
+            }
+            
+            Handles.color = Color.yellow;
+            Handles.DrawWireDisc(transform.position,Vector3.up, GameplayData.DetectionRange);
+            Handles.color = Color.red;
+            Handles.DrawWireDisc(transform.position,Vector3.up, GameplayData.AttackRange);
+        }
+
+#endif
     }
 }

@@ -1185,6 +1185,7 @@ GameObject:
   - component: {fileID: 932713866}
   - component: {fileID: 932713865}
   - component: {fileID: 932713868}
+  - component: {fileID: 932713869}
   m_Layer: 0
   m_Name: _Scripts
   m_TagString: Untagged
@@ -1259,6 +1260,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BaseManager>k__BackingField: {fileID: 150121100}
+  <WaveData>k__BackingField: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c,
+    type: 2}
+  _startLaunch: 1
+--- !u!114 &932713869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932713864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4eeef1801a8d040bb69f8201918a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseManager>k__BackingField: {fileID: 1111955686}
   <WaveData>k__BackingField: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c,
     type: 2}
   _startLaunch: 1

@@ -25,7 +25,7 @@ namespace Enemy
         
         public Action OnLaunchFirstWave { get; set; }
 
-        [SerializeField, ReadOnly] private bool _startLaunch;
+        [SerializeField] private bool _startLaunch;
         
         private int _currentWaveIndex = 0;
         
@@ -78,6 +78,11 @@ namespace Enemy
                 _currentWaveIndex++;
                 WaveData.CanSpawnTroop = true;
             }
+        }
+
+        private void OnDisable()
+        {
+            WaveData.ActualTimeBetweenWave = 0;
         }
     }
 }

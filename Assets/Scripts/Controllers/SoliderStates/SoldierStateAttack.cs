@@ -22,11 +22,11 @@ namespace Controllers.SoliderStates
 
         public override void OnEnterState()
         {
-            Debug.Log("state attack");
         }
 
         public override void UpdateState()
         {
+            //base
             if (_baseToAttack != null)
             {
                 if (_baseToAttack.GameplayData.Life <= 0)
@@ -35,7 +35,7 @@ namespace Controllers.SoliderStates
                     Controller.SetState(SoldierStateEnum.None);
                 }
 
-                if (Controller.IsInRange(_baseToAttack.transform))
+                if (Controller.IsInAttackRange(_baseToAttack.transform))
                 {
                     _attackCooldown -= Time.deltaTime;
                     if (_attackCooldown <= 0)
@@ -44,18 +44,7 @@ namespace Controllers.SoliderStates
                         _baseToAttack.SetLife(-Controller.GameplayData.Damage);
                         _attackCooldown = Controller.GameplayData.AttackSpeed;
 
-                        switch (Controller.GameplayData.Type)
-                        {
-                            case SoldierType.SimpleCac:
-                                break;
-                            case SoldierType.SimpleDistance:
-                                ProjectileView arrow = RessourceManager.Instance.InstantiateObject(RessourceManager.Instance.ArrowPrefab).GetComponent<ProjectileView>();
-                                arrow.transform.position = Controller.transform.position;
-                                arrow.SetTarget(_baseToAttack.transform.position);
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                        LaunchAttackVisual(_baseToAttack.transform);
                     }
                 }
                 else
@@ -66,26 +55,47 @@ namespace Controllers.SoliderStates
                 return;
             }
             
-            
-            if (_soldierToAttack.transform == null || _soldierToAttack.GameplayData.Life <= 0)
+            //soldier
+            if (_soldierToAttack == null 
+                || _soldierToAttack.transform == null
+                || _soldierToAttack.GameplayData.Life <= 0)
             {
                 Controller.SetState(SoldierStateEnum.Walk);
+                return;
             }
-            if (Controller.IsInRange(_soldierToAttack.transform))
+            if (Controller.IsInAttackRange(_soldierToAttack.transform))
             {
                 _attackCooldown -= Time.deltaTime;
                 if (_attackCooldown <= 0)
                 {
                     Controller.Rigidbody.velocity = Vector3.zero;
-                    //attack soldier
-
+                    _soldierToAttack.SetLife(-Controller.GameplayData.Damage);
                     _attackCooldown = Controller.GameplayData.AttackSpeed;
+                    
+                    LaunchAttackVisual(_soldierToAttack.transform);
                 }
             }
             else
             {
                 _attackCooldown = Controller.GameplayData.AttackSpeed;
                 MoveToward(_soldierToAttack.transform);
+            }
+        }
+
+        private void LaunchAttackVisual(Transform toAttack)
+        {
+            switch (Controller.GameplayData.Type)
+            {
+                case SoldierType.SimpleCac:
+                    break;
+                case SoldierType.SimpleDistance:
+                    ProjectileView arrow = RessourceManager.Instance.InstantiateObject(RessourceManager.Instance.ArrowPrefab)
+                        .GetComponent<ProjectileView>();
+                    arrow.transform.position = Controller.transform.position;
+                    arrow.SetTarget(toAttack.transform.position);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
