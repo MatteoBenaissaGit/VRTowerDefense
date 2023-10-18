@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Pion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public LayerMask LayerMask;
+    public bool CanBeDestroy;
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if ((LayerMask.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
