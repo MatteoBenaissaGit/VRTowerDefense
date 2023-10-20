@@ -488,10 +488,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25655d8938158814c92cf088c1218240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayerMask:
+  DestroyingLayer:
     serializedVersion: 2
     m_Bits: 64
-  PionPrefab: {fileID: 1482932754916606482}
+  SocleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  CanBeDestroy: 0
 --- !u!1 &1482993256090451220
 GameObject:
   m_ObjectHideFlags: 0

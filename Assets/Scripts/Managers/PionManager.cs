@@ -12,6 +12,8 @@ public class PionManager : MonoBehaviour
 
     public Pion ActualPion;
 
+    public Action<int> OnPawnPlaced;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +24,8 @@ public class PionManager : MonoBehaviour
         {
             Debug.LogError("There is already another PionManager in this scene !");
         }
+
+        OnPawnPlaced += LaunchOnPawnPlaced;
     }
 
     private void Start()
@@ -37,5 +41,11 @@ public class PionManager : MonoBehaviour
             ActualPion = newPion.GetComponent<Pion>();
             _originPosition = ActualPion.transform.position;
         }
+    }
+
+    public void LaunchOnPawnPlaced(int indexSocle)
+    {
+        Debug.Log($"Pion posé sur socle {indexSocle}");
+        
     }
 }

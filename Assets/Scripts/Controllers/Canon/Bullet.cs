@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeBeforeDestroy;
 
+    public LayerMask LayerMask;
+
     private void Start()
     {
         StartCoroutine(Destroy());
@@ -15,7 +17,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
+        if ((other.gameObject.layer & LayerMask) == LayerMask)
+            Destroy(gameObject);
     }
 
     IEnumerator Destroy()

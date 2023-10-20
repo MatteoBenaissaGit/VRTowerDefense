@@ -149,10 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBeforeDestroy: 5
-  _explosion: {fileID: 4780427319067394463, guid: f6bfd177d5a19f74c97c6e51c61069d4,
-    type: 3}
-  explosionParent: {fileID: 1974949088841925602, guid: 49fddf0393f9bfc44b2440dd383309ec,
-    type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!199 &778973457288919850
 ParticleSystemRenderer:
   serializedVersion: 6
