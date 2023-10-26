@@ -10,7 +10,10 @@ namespace Managers
     public class RessourceManager : Singleton<RessourceManager>
     {
         [field:SerializeField] public TroopsData TroopsData { get; private set; } 
-        [field:SerializeField] public List<SoldierController> SoldierPrefabs { get; private set; } //list them in the same order as the SoldierTypeEnum
+        [field:SerializeField] public SoldierController PlayerCacSoldier { get; private set; }
+        [field:SerializeField] public SoldierController PlayerDistanceSoldier { get; private set; }
+        [field:SerializeField] public SoldierController EnemyCacSoldier { get; private set; }
+        [field:SerializeField] public SoldierController EnemyDistanceSoldier { get; private set; }
         [field:SerializeField] public TroopController TroopPrefab { get; private set; } //list them in the same order as the SoldierTypeEnum
         [field:SerializeField] public GameObject ArrowPrefab { get; private set; } //list them in the same order as the SoldierTypeEnum
 

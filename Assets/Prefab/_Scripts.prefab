@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2136685687908803208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8003189084973335383}
+  - component: {fileID: 3017936497611526304}
+  - component: {fileID: 3756032499852910348}
+  - component: {fileID: 2632771216822798800}
+  m_Layer: 0
+  m_Name: _Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8003189084973335383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136685687908803208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.94904786, y: -4.142314, z: 6.559304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3017936497611526304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136685687908803208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fc30d53222401e817ff715039b0133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPersistant: 0
+  <PlayerBase>k__BackingField: {fileID: 0}
+  <EnemyBase>k__BackingField: {fileID: 0}
+  <Paths>k__BackingField:
+  - {fileID: 0}
+--- !u!114 &3756032499852910348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136685687908803208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06976552ab0e481fb80d09aba4ac50f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPersistant: 0
+  <TroopsData>k__BackingField: {fileID: 11400000, guid: 37403199a73877a44864ad2dbd239beb,
+    type: 2}
+  <PlayerCacSoldier>k__BackingField: {fileID: 3113886140681288272, guid: 3a50a3e5581d3c64a89e0173c9872b3e,
+    type: 3}
+  <PlayerDistanceSoldier>k__BackingField: {fileID: 8348890766485328464, guid: b3c3a997b7f301b4d9f3e394de88b40d,
+    type: 3}
+  <EnemyCacSoldier>k__BackingField: {fileID: 3113886140681288272, guid: 8454c78630fc5b74db83765f559ee13a,
+    type: 3}
+  <EnemyDistanceSoldier>k__BackingField: {fileID: 8348890766485328464, guid: 441583b3ef850724d945e6ac2ef061ab,
+    type: 3}
+  <TroopPrefab>k__BackingField: {fileID: 8186408073606606346, guid: 07ff4ae71b96a7b40a0e5f48618301a7,
+    type: 3}
+  <ArrowPrefab>k__BackingField: {fileID: 5079941952171011656, guid: 39cbff02e5e34cf4f8d40dbb8e35b5ef,
+    type: 3}
+--- !u!114 &2632771216822798800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136685687908803208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4eeef1801a8d040bb69f8201918a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseManager>k__BackingField: {fileID: 0}
+  <WaveData>k__BackingField: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c,
+    type: 2}
+  _startLaunch: 1

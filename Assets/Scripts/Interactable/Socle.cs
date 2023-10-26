@@ -1,32 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Socle : MonoBehaviour
+namespace Interactable
 {
-    public XRSocketInteractor socketInteractor;
-    public int SocleIndex;
+    public class Socle : MonoBehaviour
+    {
+        public XRSocketInteractor SocketInteractor;
+        public int SocleIndex;
     
-    private void Start()
-    {
-        socketInteractor = GetComponent<XRSocketInteractor>();
-    }
-
-    public void OnSocketSelected(SelectEnterEventArgs args)
-    {
-        if (args.interactable != null)
+        private void Start()
         {
-            GameObject placedObject = args.interactable.gameObject;
+            SocketInteractor = GetComponent<XRSocketInteractor>();
+        }
 
-            Pion actualPionPlaced = placedObject.GetComponent<Pion>();
-
-            if (actualPionPlaced.IsPlaced == false)
+        public void OnSocketSelected(SelectEnterEventArgs args)
+        {
+            if (args.interactable != null)
             {
-                actualPionPlaced.IsPlaced = true;
-                actualPionPlaced.LaunchCoroutine();
-                PionManager.Instance.OnPawnPlaced.Invoke(SocleIndex);
+                GameObject placedObject = args.interactable.gameObject;
+
+                Pion actualPionPlaced = placedObject.GetComponent<Pion>();
+
+                if (actualPionPlaced.IsPlaced == false)
+                {
+                    actualPionPlaced.IsPlaced = true;
+                    actualPionPlaced.LaunchCoroutine();
+                    PionManager.Instance.OnPawnPlaced.Invoke(SocleIndex, actualPionPlaced);
+                }
             }
         }
     }

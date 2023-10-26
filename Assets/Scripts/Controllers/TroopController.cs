@@ -11,13 +11,13 @@ namespace Controllers
     {
         public TroopGameplayData(SoldierType type, int number, UserType user, PathGameplay.Path path) //TODO add a position or path reference
         {
-            Soldier = type;
+            SoldierType = type;
             Number = number;
             Path = path;
             User = user;
         }
         
-        public SoldierType Soldier { get; private set; }
+        public SoldierType SoldierType { get; private set; }
         public int Number { get; private set; }
         public PathGameplay.Path Path { get; private set; }
         public UserType User { get; private set; }
@@ -49,11 +49,26 @@ namespace Controllers
             //spawns
             for (int i = 0; i < _gameplayData.Number; i++)
             {
-                SoldierController soldier = Instantiate(RessourceManager.Instance.SoldierPrefabs[(int)_gameplayData.Soldier], transform, true);
-                SoldierData data = RessourceManager.Instance.TroopsData.GetSoldierData(_gameplayData.Soldier);
+                SoldierController soldierPrefab = null;
+                switch (gameplayData.SoldierType)
+                {
+                    case SoldierType.SimpleCac:
+                        soldierPrefab = gameplayData.User == UserType.Player ? 
+                            RessourceManager.Instance.PlayerCacSoldier : RessourceManager.Instance.EnemyCacSoldier;
+                        break;
+                    case SoldierType.SimpleDistance:
+                        soldierPrefab = gameplayData.User == UserType.Player ? 
+                            RessourceManager.Instance.PlayerDistanceSoldier : RessourceManager.Instance.EnemyDistanceSoldier;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
+                SoldierController soldier = Instantiate(soldierPrefab, transform, true);
+                SoldierData data = RessourceManager.Instance.TroopsData.GetSoldierData(_gameplayData.SoldierType);
                 if (data == null)
                 {
-                    throw new Exception($"no data for this troop : {_gameplayData.Soldier.ToString()}");
+                    throw new Exception($"no data for this troop : {_gameplayData.SoldierType.ToString()}");
                 }
                 soldier.transform.name = $"Soldier {data.Type} {i}";
 

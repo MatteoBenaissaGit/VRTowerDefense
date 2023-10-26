@@ -1,51 +1,77 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Controllers;
+using Interactable;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PionManager : MonoBehaviour
+namespace Managers
 {
-    public static PionManager Instance;
+    public class PionManager : MonoBehaviour
+    {
+        public static PionManager Instance;
 
-    private Vector3 _originPosition;
-    public GameObject PionPrefab;
+        private Vector3 _originCacPawnPosition;
+        private Vector3 _originDistancePawnPosition;
 
-    public Pion ActualPion;
+        public GameObject CacPawnPrefab;
+        public GameObject DistancePawnPrefab;
 
-    public Action<int> OnPawnPlaced;
+        public Pion CurrentCacPawn;
+        public Pion CurrentDistancePawn;
+
+        public Action<int,Pion> OnPawnPlaced;
     
-    private void Awake()
-    {
-        if (Instance == null)
+        private void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Debug.LogError("There is already another PionManager in this scene !");
+            }
+
+            OnPawnPlaced += LaunchOnPawnPlaced;
         }
-        else
+
+        private void Start()
         {
-            Debug.LogError("There is already another PionManager in this scene !");
+            _originCacPawnPosition = CurrentCacPawn.transform.position;
+            _originDistancePawnPosition = CurrentDistancePawn.transform.position;
         }
 
-        OnPawnPlaced += LaunchOnPawnPlaced;
-    }
-
-    private void Start()
-    {
-        _originPosition = ActualPion.transform.position;
-    }
-
-    private void Update()
-    {
-        if (ActualPion == null)
+        private void Update()
         {
-            GameObject newPion = Instantiate(PionPrefab, _originPosition, Quaternion.identity);
-            ActualPion = newPion.GetComponent<Pion>();
-            _originPosition = ActualPion.transform.position;
+            if (CurrentCacPawn == null)
+            {
+                GameObject newPion = Instantiate(CacPawnPrefab, _originCacPawnPosition, Quaternion.identity);
+                CurrentCacPawn = newPion.GetComponent<Pion>();
+                _originCacPawnPosition = CurrentCacPawn.transform.position;
+            }
+            
+            if (CurrentDistancePawn == null)
+            {
+                GameObject newPion = Instantiate(DistancePawnPrefab, _originDistancePawnPosition, Quaternion.identity);
+                CurrentDistancePawn = newPion.GetComponent<Pion>();
+                _originDistancePawnPosition = CurrentDistancePawn.transform.position;
+            }
         }
-    }
 
-    public void LaunchOnPawnPlaced(int indexSocle)
-    {
-        Debug.Log($"Pion posé sur socle {indexSocle}");
+        public void LaunchOnPawnPlaced(int indexSocle, Pion pion)
+        {
+            Debug.Log($"Pion posé sur socle {indexSocle}");
         
+            GameManager.Instance.PlayerBase.TroopSpawner.SpawnTroopAtPath(indexSocle, pion.NumberOfTroopsToSpawn, pion.Type);
+            StartCoroutine(DestroyPawn());
+        }
+
+        public IEnumerator DestroyPawn()
+        {
+            float timeToDestroyInSeconds = 6f;
+            yield return timeToDestroyInSeconds;
+            Destroy(gameObject);
+        }
     }
 }
