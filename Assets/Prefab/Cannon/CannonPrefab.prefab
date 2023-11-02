@@ -1623,6 +1623,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonAdam
       objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000008940696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000029802319
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386040302072504187, guid: 14b0ba5cc86fb224b91cdacbec973116,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000020861623
+      objectReference: {fileID: 0}
     - target: {fileID: 7626907988838877531, guid: 14b0ba5cc86fb224b91cdacbec973116,
         type: 3}
       propertyPath: m_RootOrder
