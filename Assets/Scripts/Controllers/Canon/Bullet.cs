@@ -13,18 +13,21 @@ public class Bullet : MonoBehaviour
     public LayerMask LayerMask;
 
     private List<SoldierController> _soldiersTouched = new List<SoldierController>();
+    private float _timerSafe = 1f;
 
     private void Start()
     {
         StartCoroutine(Destroy());
     }
 
+    private void Update()
+    {
+        _timerSafe -= Time.deltaTime;
+    }
+
     private void OnCollisionEnter(Collision other)
     {
-        _soldiersTouched.ForEach(x => x.SetLife(-1000));
-        _explosionParticle.Play();
-        _explosionParticle.transform.parent = null;
-        Destroy(gameObject);
+        Explode();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +55,16 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeBeforeDestroy);
 
+        Explode();
+    }
+
+    private void Explode()
+    {
+        if (_timerSafe > 0)
+        {
+            return;
+        }
+        
         _soldiersTouched.ForEach(x => x.SetLife(-1000));
         _explosionParticle.transform.parent = null;
         _explosionParticle.transform.rotation = Quaternion.Euler(Vector3.zero);
