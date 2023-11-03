@@ -95,6 +95,7 @@ namespace Controllers
             GameplayData.Life += value;
             if (GameplayData.Life <= 0)
             {
+                Debug.Log("die");
                 Die();
             }
         }
