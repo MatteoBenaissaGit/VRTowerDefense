@@ -35,14 +35,12 @@ namespace View
                 case SoldierStateEnum.Spawn:
                     break;
                 case SoldierStateEnum.Walk:
-                    Debug.Log("walk view");
                     UpdateWalk();
                     break;
                 case SoldierStateEnum.AttackBase:
                     UpdateAttack();
                     break;
                 case SoldierStateEnum.AttackSoldier:
-                    Debug.Log("attack view");
                     UpdateAttack();
                     break;
                 default:
@@ -78,8 +76,8 @@ namespace View
                 return;
             }
             
-            Vector3 modifiedTargetPos = new Vector3(Controller.AttackTarget.position.x, transform.position.y, Controller.AttackTarget.position.z);
-            transform.LookAt(modifiedTargetPos);
+            Vector3 modifiedAttackTargetPos = new Vector3(Controller.AttackTarget.position.x, transform.position.y, Controller.AttackTarget.position.z);
+            transform.LookAt(modifiedAttackTargetPos);
         }
 
         public void SetAnimation(string name, bool isTrigger, bool valueIfNotTrigger = true)

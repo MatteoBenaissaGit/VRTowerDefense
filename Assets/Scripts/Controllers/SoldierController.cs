@@ -134,7 +134,7 @@ namespace Controllers
                     break;
                 case SoldierStateEnum.AttackSoldier:
                     _soldierState = new SoldierStateAttack(this, GetClosestSoldierToAttack(), null);
-                    AttackTarget = _soldierState.Controller.View.transform;
+                    AttackTarget = GetClosestSoldierToAttack().View.transform;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
