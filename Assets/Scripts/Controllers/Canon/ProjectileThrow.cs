@@ -30,11 +30,11 @@ public class ProjectileThrow : MonoBehaviour
 
     private void Start()
     {
-        _action1.action.Enable();
-        _action1.action.performed += context => { ThrowObject(); };
+        //_action1.action.Enable();
+        //_action1.action.performed += context => { ThrowObject(); };
         
-        _action2.action.Enable();
-        _action2.action.performed += context => { ThrowObject(); };
+        //_action2.action.Enable();
+        //_action2.action.performed += context => { ThrowObject(); };
     }
 
     void Update()
