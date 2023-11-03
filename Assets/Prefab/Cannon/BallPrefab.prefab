@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1153077677231334026}
   - component: {fileID: 2882553137436418251}
   - component: {fileID: -4372559327244379006}
+  - component: {fileID: 3163516324954657422}
   - component: {fileID: -6292685268058118433}
   - component: {fileID: 778973457288919850}
   - component: {fileID: 29489962057506450}
-  - component: {fileID: 3163516324954657422}
   m_Layer: 2
   m_Name: BallPrefab
   m_TagString: Untagged
@@ -138,6 +138,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &3163516324954657422
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592103837915630936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.63
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6292685268058118433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeBeforeDestroy: 5
   _explosionParticle: {fileID: 4197203982661569287}
+  _colliderCollide: {fileID: 3163516324954657422}
   LayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -4950,27 +4972,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!135 &3163516324954657422
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2592103837915630936}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.63
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4107206578729419255
 PrefabInstance:
   m_ObjectHideFlags: 0

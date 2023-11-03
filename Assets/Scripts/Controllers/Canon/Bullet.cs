@@ -9,11 +9,18 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeBeforeDestroy;
     [SerializeField] private ParticleSystem _explosionParticle;
+    [SerializeField] private Collider _colliderCollide;
 
     public LayerMask LayerMask;
 
     private List<SoldierController> _soldiersTouched = new List<SoldierController>();
     private float _timerSafe = 1f;
+
+    private void Awake()
+    {
+        _timerSafe = 1f;
+        _colliderCollide.isTrigger = true;
+    }
 
     private void Start()
     {
@@ -23,6 +30,10 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         _timerSafe -= Time.deltaTime;
+        if (_timerSafe < 0)
+        {
+            _colliderCollide.isTrigger = false;
+        }
     }
 
     private void OnCollisionEnter(Collision other)
