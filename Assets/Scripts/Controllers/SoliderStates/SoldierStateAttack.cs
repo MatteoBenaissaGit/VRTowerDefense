@@ -63,6 +63,8 @@ namespace Controllers.SoliderStates
                 Controller.SetState(SoldierStateEnum.Walk);
                 return;
             }
+
+            //attack
             if (Controller.IsInAttackRange(_soldierToAttack.transform))
             {
                 _attackCooldown -= Time.deltaTime;
@@ -84,6 +86,8 @@ namespace Controllers.SoliderStates
 
         private void LaunchAttackVisual(Transform toAttack)
         {
+            Controller.View.SetAnimation("attack",true);
+
             switch (Controller.GameplayData.Type)
             {
                 case SoldierType.SimpleCac:

@@ -36,7 +36,7 @@ MonoBehaviour:
     SoldierType: 1
     TimeBeforeNextWaves: 3
   - PathNumber: 2
-    NumberOfTroops: 6
+    NumberOfTroops: 2
     SoldierType: 1
     TimeBeforeNextWaves: 20
   - PathNumber: 2
@@ -50,4 +50,8 @@ MonoBehaviour:
   - PathNumber: 2
     NumberOfTroops: 4
     SoldierType: 0
+    TimeBeforeNextWaves: 10
+  - PathNumber: 1
+    NumberOfTroops: 2
+    SoldierType: 1
     TimeBeforeNextWaves: 10

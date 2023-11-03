@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
@@ -46,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
         type: 3}
@@ -88,6 +88,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9, type: 3}
+--- !u!95 &4855170036165667070 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 893465304789035591, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5694589082543342265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6575044288155020302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1456916028983389879, guid: 3124cd8848f5d944a9bc5dfc6dbdd2f9,
@@ -106,6 +112,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Archer(SoldierVariant)_ENEMY
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899594429376205307, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: <Animator>k__BackingField
+      value: 
+      objectReference: {fileID: 4855170036165667070}
+    - target: {fileID: 5803030128373845605, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}

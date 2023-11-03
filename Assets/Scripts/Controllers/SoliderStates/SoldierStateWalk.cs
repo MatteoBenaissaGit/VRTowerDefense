@@ -15,6 +15,7 @@ namespace Controllers.SoliderStates
         
         public override void OnEnterState()
         {
+            Controller.View.SetAnimation("walk",false);
         }
 
         public override void UpdateState()
@@ -42,7 +43,7 @@ namespace Controllers.SoliderStates
 
         public override void OnExitState()
         {
-            
+            //Controller.View.SetAnimation("walk",false, false);
         }
         
         private void MoveTowardTargetPosition()
