@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56cddf930eff9854ea5a0f95fb8c39f6, type: 3}
   m_Name: WaveDev
   m_EditorClassIdentifier: 
-  TimeBetweenWave: 10
+  TimeBetweenWave: 0
   CanSpawnTroop: 1
   Waves:
   - PathNumber: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   - PathNumber: 0
     NumberOfTroops: 4
     SoldierType: 1
-    TimeBeforeNextWaves: 15
+    TimeBeforeNextWaves: 13
   - PathNumber: 1
     NumberOfTroops: 4
     SoldierType: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   - PathNumber: 1
     NumberOfTroops: 6
     SoldierType: 0
-    TimeBeforeNextWaves: 15
+    TimeBeforeNextWaves: 13
   - PathNumber: 2
     NumberOfTroops: 6
     SoldierType: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   - PathNumber: 2
     NumberOfTroops: 2
     SoldierType: 1
-    TimeBeforeNextWaves: 20
+    TimeBeforeNextWaves: 17
   - PathNumber: 2
     NumberOfTroops: 4
     SoldierType: 0
@@ -50,8 +50,8 @@ MonoBehaviour:
   - PathNumber: 2
     NumberOfTroops: 4
     SoldierType: 0
-    TimeBeforeNextWaves: 10
+    TimeBeforeNextWaves: 8
   - PathNumber: 1
     NumberOfTroops: 2
     SoldierType: 1
-    TimeBeforeNextWaves: 10
+    TimeBeforeNextWaves: 8
