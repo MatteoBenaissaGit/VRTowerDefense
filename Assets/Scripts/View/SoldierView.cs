@@ -8,6 +8,7 @@ namespace View
 {
     public class SoldierView : MonoBehaviour
     {
+        [field:SerializeField] public Animator Animator { get; private set; }
         public SoldierController Controller { get; private set; }
 
         public void Initialize(SoldierController controller)
@@ -37,8 +38,10 @@ namespace View
                     UpdateWalk();
                     break;
                 case SoldierStateEnum.AttackBase:
+                    UpdateAttack();
                     break;
                 case SoldierStateEnum.AttackSoldier:
+                    UpdateAttack();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -64,6 +67,28 @@ namespace View
         {
             Vector3 modifiedTargetPos = new Vector3(Controller.GameplayData.TargetPosition.x, transform.position.y, Controller.GameplayData.TargetPosition.z);
             transform.LookAt(modifiedTargetPos);
+        }
+        
+        private void UpdateAttack()
+        {
+            if (Controller.AttackTarget == null)
+            {
+                return;
+            }
+            
+            Vector3 modifiedAttackTargetPos = new Vector3(Controller.AttackTarget.position.x, transform.position.y, Controller.AttackTarget.position.z);
+            transform.LookAt(modifiedAttackTargetPos);
+        }
+
+        public void SetAnimation(string name, bool isTrigger, bool valueIfNotTrigger = true)
+        {
+            if (isTrigger)
+            {
+                Animator.SetTrigger(name);
+                return;
+            }
+
+            Animator.SetBool(name, valueIfNotTrigger);
         }
     }
 }

@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 7488266886916049215, guid: a8f2a5382ef89c44dadd040ba32ae3b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7488266886916049215, guid: a8f2a5382ef89c44dadd040ba32ae3b0,
         type: 3}
@@ -88,6 +88,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f2a5382ef89c44dadd040ba32ae3b0, type: 3}
+--- !u!95 &212629173233070891 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 164370989186610991, guid: a8f2a5382ef89c44dadd040ba32ae3b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 50840938622862340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7448730167664069947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7488266886916049215, guid: a8f2a5382ef89c44dadd040ba32ae3b0,
@@ -106,6 +112,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Swordman(SoldierVariant)_ENEMY
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899594429376205307, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: <Animator>k__BackingField
+      value: 
+      objectReference: {fileID: 212629173233070891}
+    - target: {fileID: 5803030128373845605, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}

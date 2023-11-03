@@ -52,6 +52,7 @@ namespace Controllers
         public PathUserManager PathManager { get; private set; }
         public SoldierStateEnum CurrentState { get; private set; }
         public Action<SoldierStateEnum> OnStateChanged { get; set; }
+        public Transform AttackTarget { get; private set; }
         
         private SoldierStateBase _soldierState;
         private SoldierController[] _soldiersInRange;
@@ -129,9 +130,11 @@ namespace Controllers
                     break;
                 case SoldierStateEnum.AttackBase:
                     _soldierState = new SoldierStateAttack(this, null, _baseToAttack);
+                    AttackTarget = _baseToAttack.transform;
                     break;
                 case SoldierStateEnum.AttackSoldier:
                     _soldierState = new SoldierStateAttack(this, GetClosestSoldierToAttack(), null);
+                    AttackTarget = GetClosestSoldierToAttack().View.transform;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);

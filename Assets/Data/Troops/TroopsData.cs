@@ -36,6 +36,10 @@ namespace Data.Troops
         {
             foreach (SoldierData soldier in SoldiersData)
             {
+                if (_dictionarySoldiersData.ContainsKey(soldier.Type))
+                {
+                    continue;
+                }
                 _dictionarySoldiersData.Add(soldier.Type, soldier);
             }
         }
