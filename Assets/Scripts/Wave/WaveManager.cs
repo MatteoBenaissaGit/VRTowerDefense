@@ -81,6 +81,11 @@ namespace Enemy
                 _currentWaveIndex++;
                 WaveData.CanSpawnTroop = true;
             }
+            else
+            {
+                _currentWaveIndex = 0;
+                SpawnWave();
+            }
         }
 
         private void OnDisable()

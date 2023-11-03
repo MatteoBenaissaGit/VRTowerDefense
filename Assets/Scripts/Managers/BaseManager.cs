@@ -6,6 +6,7 @@ using Data.Troops;
 using Enemy;
 using PathGameplay;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using View;
 
 namespace Managers
@@ -64,6 +65,8 @@ namespace Managers
         private void Die()
         {
             Debug.Log("base died");
+            //TODO win / gameover
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
