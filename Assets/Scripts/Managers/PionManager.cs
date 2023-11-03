@@ -64,14 +64,14 @@ namespace Managers
             Debug.Log($"Pion posé sur socle {indexSocle}");
         
             GameManager.Instance.PlayerBase.TroopSpawner.SpawnTroopAtPath(indexSocle, pion.NumberOfTroopsToSpawn, pion.Type);
-            StartCoroutine(DestroyPawn());
+            StartCoroutine(DestroyPawn(pion));
         }
 
-        public IEnumerator DestroyPawn()
+        public IEnumerator DestroyPawn(Pion pion)
         {
             float timeToDestroyInSeconds = 6f;
-            yield return timeToDestroyInSeconds;
-            Destroy(gameObject);
+            yield return new WaitForSeconds(timeToDestroyInSeconds);
+            Destroy(pion.transform.gameObject);
         }
     }
 }
