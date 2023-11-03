@@ -1391,6 +1391,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1700796576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2136685687908803208, guid: e924e64032ea1d24794e1eebb6176c3d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7950444801880028278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700796581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700796576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4eeef1801a8d040bb69f8201918a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseManager>k__BackingField: {fileID: 1111955686}
+  <WaveData>k__BackingField: {fileID: 11400000, guid: de496760e54b7f244bfafb9a0ce2917c,
+    type: 2}
+  _startLaunch: 1
 --- !u!4 &1749011330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4134505312059479865, guid: 895f6f3c2d334633b5800312285058d2,
@@ -1678,7 +1700,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2136685687908803208, guid: e924e64032ea1d24794e1eebb6176c3d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1700796581}
   m_SourcePrefab: {fileID: 100100000, guid: e924e64032ea1d24794e1eebb6176c3d, type: 3}
 --- !u!1001 &8410723788483764710
 PrefabInstance:
@@ -1688,6 +1714,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87753607105300222, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
+        type: 3}
+      propertyPath: <PathPoints>k__BackingField.Array.data[0].y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 87753607105300222, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
+        type: 3}
+      propertyPath: <PathPoints>k__BackingField.Array.data[1].y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 87753607105300222, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
+        type: 3}
+      propertyPath: <PathPoints>k__BackingField.Array.data[2].y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 87753607105300222, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
+        type: 3}
+      propertyPath: <PathPoints>k__BackingField.Array.data[3].y
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 87753607105300222, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
+        type: 3}
+      propertyPath: <PathPoints>k__BackingField.Array.data[4].y
+      value: -0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4631760346290223932, guid: 5e45f05b0cc0cd042a7ff5bd8810bf59,
         type: 3}
       propertyPath: m_Name

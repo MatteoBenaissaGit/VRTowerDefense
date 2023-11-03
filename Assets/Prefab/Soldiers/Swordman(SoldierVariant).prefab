@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordman(SoldierVariant)
       objectReference: {fileID: 0}
+    - target: {fileID: 3899594429376205307, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: <Animator>k__BackingField
+      value: 
+      objectReference: {fileID: 5822362286030923088}
+    - target: {fileID: 5803030128373845605, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8921773955792955456, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}
       propertyPath: m_RootOrder
@@ -145,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 3122856710664522999, guid: a77789b99b0e1b54f8e40a0aa6c5acc4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3122856710664522999, guid: a77789b99b0e1b54f8e40a0aa6c5acc4,
         type: 3}
@@ -192,6 +202,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a77789b99b0e1b54f8e40a0aa6c5acc4, type: 3}
+--- !u!95 &5822362286030923088 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2730719028119102187, guid: a77789b99b0e1b54f8e40a0aa6c5acc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8442096295701727163}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6809095722066758476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122856710664522999, guid: a77789b99b0e1b54f8e40a0aa6c5acc4,
