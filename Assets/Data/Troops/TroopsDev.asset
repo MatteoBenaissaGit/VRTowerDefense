@@ -16,7 +16,7 @@ MonoBehaviour:
   - EntityName: Swordman
     Life: 5
     Damage: 2
-    Speed: 4
+    Speed: 2.5
     DetectionRange: 6
     AttackRange: 1
     AttackSpeed: 1
