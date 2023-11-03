@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
-{
+{   
+    // [SerializeField] private GameObject CannonSupport;
+    // [SerializeField] private GameObject Cannon;
+    
     [SerializeField] private GameObject xRoll;
     [SerializeField] private GameObject yRoll;
     

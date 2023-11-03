@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56cddf930eff9854ea5a0f95fb8c39f6, type: 3}
   m_Name: WaveDev
   m_EditorClassIdentifier: 
-  TimeBetweenWave: 0
+  TimeBetweenWave: 10
   CanSpawnTroop: 1
   Waves:
   - PathNumber: 0
