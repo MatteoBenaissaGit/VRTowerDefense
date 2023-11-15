@@ -47,6 +47,7 @@ namespace Controllers
         [field:SerializeField] public SoldierView View { get; private set; }
         [field:SerializeField] public Rigidbody Rigidbody { get; private set; }
         [field:SerializeField] public ParticleSystem DeathParticles { get; private set; }
+        [field:SerializeField] public LayerMask SoldiersAndBaseLayer { get; private set; }
         
         public TroopController Troop { get; private set; }
         public PathUserManager PathManager { get; private set; }
@@ -55,7 +56,7 @@ namespace Controllers
         public Transform AttackTarget { get; private set; }
         
         private SoldierStateBase _soldierState;
-        private SoldierController[] _soldiersInRange;
+        private List<SoldierController> _soldiersInRange = new List<SoldierController>();
         private BaseManager _baseToAttack;
 
         private void Awake()
@@ -90,6 +91,11 @@ namespace Controllers
 
         public void SetLife(int value)
         {
+            if (gameObject == null || transform == null)
+            {
+                return;
+            }
+        
             transform.DOComplete();
             transform.DOPunchScale(Vector3.up * 0.1f, 0.5f);
             GameplayData.Life += value;
@@ -145,43 +151,48 @@ namespace Controllers
             
             _soldierState?.OnEnterState();
         }
-        
+
+        private int _currentDetectionSize;
+        private RaycastHit[] _results = new RaycastHit[10];
+
         private void DetectEnemies()
         {
-            Vector3 origin = transform.position;
-
-            RaycastHit[] results = new RaycastHit[100];
-            var size = Physics.SphereCastNonAlloc(origin, GameplayData.DetectionRange, transform.forward, results, 0);
-
-            List<SoldierController> controllers = new List<SoldierController>();
-            BaseManager baseToAttack = null;
-            foreach (RaycastHit hit in results)
+            int size = Physics.SphereCastNonAlloc(transform.position, GameplayData.DetectionRange, transform.forward, _results, 0, SoldiersAndBaseLayer);
+            if (size == _currentDetectionSize)
             {
-                if (hit.collider == null)
+                return;
+            }
+            _currentDetectionSize = size;
+            
+            _soldiersInRange.Clear();
+            _baseToAttack = null;
+            
+            foreach (RaycastHit hit in _results)
+            {
+                Collider hitCollider = hit.collider;
+                if (hitCollider == null)
                 {
                     continue;
                 }
                 
-                SoldierController soldier = hit.collider.gameObject.GetComponent<SoldierController>();
+                SoldierController soldier = hitCollider.gameObject.GetComponent<SoldierController>();
                 if (soldier != null)
                 {
-                    controllers.Add(soldier);
+                    _soldiersInRange.Add(soldier);
                     continue;
                 }
 
-                BaseManager attackBase = hit.collider.gameObject.GetComponent<BaseManager>();
+                BaseManager attackBase = hitCollider.gameObject.GetComponent<BaseManager>();
                 if (attackBase != null && attackBase.User != GameplayData.User)
                 {
-                    baseToAttack = attackBase;
+                    _baseToAttack = attackBase;
                 }
             }
-            _baseToAttack = baseToAttack;
-            _soldiersInRange = controllers.ToArray();
         }
 
         public SoldierController GetClosestSoldierToAttack()
         {
-            if (_soldiersInRange == null || _soldiersInRange.Length == 0)
+            if (_soldiersInRange == null || _soldiersInRange.Count == 0)
             {
                 return null;
             }

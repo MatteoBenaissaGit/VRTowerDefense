@@ -22,7 +22,7 @@ namespace Controllers.SoliderStates
         {
             MoveTowardTargetPosition();
 
-            float distance = Vector3.Distance(Controller.transform.position, Controller.GameplayData.TargetPosition - Controller.GameplayData.OffsetFromSpawnPoint);
+            float distance = Vector2.Distance(Controller.transform.position, Controller.GameplayData.TargetPosition - Controller.GameplayData.OffsetFromSpawnPoint);
             if (distance <= _data.DistanceToPathPointToSetReached)
             {
                 Controller.GameplayData.TargetPosition = Controller.PathManager.GetNextPoint();

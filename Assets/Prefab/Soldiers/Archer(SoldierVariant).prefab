@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer(SoldierVariant)
       objectReference: {fileID: 0}
+    - target: {fileID: 2353486645063505174, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3899594429376205307, guid: bddcf18d38456bf48b9df4ca4ebe7e01,
         type: 3}
       propertyPath: <Animator>k__BackingField

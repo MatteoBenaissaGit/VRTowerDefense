@@ -76,7 +76,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         
-        _soldiersTouched.ForEach(x => x.SetLife(-1000));
+        _soldiersTouched.ForEach(x => x?.SetLife(-1000));
         _explosionParticle.transform.parent = null;
         _explosionParticle.transform.rotation = Quaternion.Euler(Vector3.zero);
         _explosionParticle.Play();

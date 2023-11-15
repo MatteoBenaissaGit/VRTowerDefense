@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3899594429376205307}
   - component: {fileID: 5028877374305963170}
   - component: {fileID: 5803030128373845605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,9 @@ MonoBehaviour:
   <View>k__BackingField: {fileID: 3899594429376205307}
   <Rigidbody>k__BackingField: {fileID: 5028877374305963170}
   <DeathParticles>k__BackingField: {fileID: 8205021203508000280}
+  <SoldiersAndBaseLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &3899594429376205307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55167f1c662744f28c56f77813c60e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 0}
 --- !u!54 &5028877374305963170
 Rigidbody:
   m_ObjectHideFlags: 0
