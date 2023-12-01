@@ -27,26 +27,29 @@ namespace Enemy
 
         public Action OnLaunchFirstWave { get; set; }
 
-        [SerializeField] private bool _startLaunch;
+        public bool StartLaunch;
 
         private int _currentWaveIndex = 0;
 
         private void Awake()
         {
-            _startLaunch = false;
+            StartLaunch = false;
             OnLaunchFirstWave += Launch;
         }
 
         private void Start()
         {
-            WaveData.CanSpawnTroop = true;
-            OnLaunchFirstWave.Invoke();
+            if (StartLaunch)
+            {
+                OnLaunchFirstWave.Invoke();
+            }
         }
 
         private void Launch()
         {
+            WaveData.CanSpawnTroop = true;
             _actualTimeBetweenWaves = WaveData.TimeBetweenWave;
-            _startLaunch = true;
+            StartLaunch = true;
         }
 
         private void Update()
@@ -56,7 +59,7 @@ namespace Enemy
                 return;
             }
 
-            if (WaveData.CanSpawnTroop && _startLaunch)
+            if (WaveData.CanSpawnTroop && StartLaunch)
             {
                 _actualTimeBetweenWaves -= Time.deltaTime;
 
