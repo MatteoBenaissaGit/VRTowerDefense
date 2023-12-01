@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _timeBeforeDestroy;
     [SerializeField] private ParticleSystem _explosionParticle;
     [SerializeField] private Collider _colliderCollide;
+    [SerializeField] private AudioSource _explosionAudioSource;
 
     public LayerMask LayerMask;
 
@@ -75,6 +76,9 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
+
+        _explosionAudioSource.transform.parent = null;
+        _explosionAudioSource.Play();
         
         _soldiersTouched.ForEach(x => x?.SetLife(-1000));
         _explosionParticle.transform.parent = null;

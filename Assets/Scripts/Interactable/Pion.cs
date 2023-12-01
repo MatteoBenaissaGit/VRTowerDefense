@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Controllers;
 using UnityEngine;
@@ -14,7 +15,33 @@ namespace Interactable
         public int NumberOfTroopsToSpawn;
 
         public bool IsPlaced;
-    
+
+        private XRGrabInteractable _xrGrab;
+        private float _timerToRespawn = 2f;
+        private bool _hasBeenGrabbed;
+
+        private void Awake()
+        {
+            _xrGrab = GetComponent<XRGrabInteractable>();
+        }
+
+        private void Update()
+        {
+            if (_xrGrab.isSelected && _hasBeenGrabbed == false)
+            {
+                _hasBeenGrabbed = true;
+            }
+
+            if (_hasBeenGrabbed && _xrGrab.isSelected == false && IsPlaced == false)
+            {
+                _timerToRespawn -= Time.deltaTime;
+                if (_timerToRespawn < 0)
+                {
+                    DestroyPawn();
+                }
+            }
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             if ((DestroyingLayer.value & (1 << collision.gameObject.layer)) != 0)

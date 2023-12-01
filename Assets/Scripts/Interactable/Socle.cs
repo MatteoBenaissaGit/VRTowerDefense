@@ -8,6 +8,7 @@ namespace Interactable
     {
         public XRSocketInteractor SocketInteractor;
         public int SocleIndex;
+        public ParticleSystem _particleSystemPlaced;
     
         private void Start()
         {
@@ -18,6 +19,8 @@ namespace Interactable
         {
             if (args.interactable != null)
             {
+                _particleSystemPlaced.Play();
+                
                 GameObject placedObject = args.interactable.gameObject;
 
                 Pion actualPionPlaced = placedObject.GetComponent<Pion>();

@@ -17,6 +17,7 @@ public class ProjectileThrow : MonoBehaviour
     [SerializeField] Transform StartPosition;
 
     [SerializeField] private GameObject _explosion;
+    [SerializeField] private AudioSource _fireSoundAudioSource;
 
     [SerializeField] private InputActionReference _action1;
     [SerializeField] private InputActionReference _action2;
@@ -64,6 +65,8 @@ public class ProjectileThrow : MonoBehaviour
 
     public void ThrowObject()
     {
+        _fireSoundAudioSource.Play();
+        
         Rigidbody thrownObject = Instantiate(objectToThrow, StartPosition.position, Quaternion.identity);
         thrownObject.AddForce(StartPosition.forward * force, ForceMode.Impulse);
 
